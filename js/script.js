@@ -1,6 +1,6 @@
-import * as THREE from 'three'
-import * as CANNON from 'cannon-es'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import * as THREE from '/node_modules/three'
+import * as CANNON from '/node_modules/cannon-es'
+import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
 
 // скайбокс
 import sky3Box0 from '../src/img/sky_boxes/city/skybox0.jpg'
@@ -38,7 +38,7 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	40000
 )
-camera.position.set(5, 10, 15)
+camera.position.set(0, 25, 20)
 
 
 const orbit = new OrbitControls(camera, renderer.domElement)
@@ -77,8 +77,8 @@ const timeStep = 1 / 60
 
 
 
-// поверхность
 
+// ground
 const groundGeo = new THREE.PlaneGeometry(50, 50)
 const groundMat = new THREE.MeshStandardMaterial({
 	color: 0x111919,
@@ -89,6 +89,7 @@ const groundMat = new THREE.MeshStandardMaterial({
 const ground = new THREE.Mesh(groundGeo, groundMat)
 ground.receiveShadow = true
 ground.position.set(0, 0, 0)
+ground.name = `ground`
 scene.add(ground)
 
 
@@ -114,12 +115,12 @@ world.addBody(groundBody)
 
 
 // бокс
-const boxGeo = new THREE.BoxGeometry()
+const boxGeo = new THREE.BoxGeometry(1, 1, 1, 10, 10, 10)
 const boxMat = new THREE.MeshStandardMaterial({
-	color: 0xf8db5
+	color: 0xf8db5,
+	wireframe: true,
 })
 const box = new THREE.Mesh(boxGeo, boxMat)
-box.castShadow = true
 box.position.set(0, 2, 0)
 scene.add(box)
 
@@ -127,16 +128,15 @@ scene.add(box)
 // ширина/высота/глубина куба для CANNON
 const boxDHW = [box.geometry.parameters.depth / 2, box.geometry.parameters.height / 2, box.geometry.parameters.width / 2]
 
-// // коллизия box
+// коллизия box
 const boxPhisMat = new CANNON.Material()
 const boxBody = new CANNON.Body({
 	mass: 1,
 	shape: new CANNON.Box(new CANNON.Vec3(boxDHW[0], boxDHW[1], boxDHW[2])),
-	position: new CANNON.Vec3(0, 10, 0),
+	position: new CANNON.Vec3(Math.random() * 1, 10, Math.random() * 1),
 	material: boxPhisMat,
 })
-console.log(boxBody)
-// boxBody.linearDamping = 0.02 //сопротимвление воздуха для перемещения
+boxBody.linearDamping = 0.05 //сопротимвление воздуха для перемещения
 boxBody.angularDamping = 0.5 //сопротимвление воздуха для раскручивания
 world.addBody(boxBody)
 
@@ -145,7 +145,7 @@ const groBoxContactMat = new CANNON.ContactMaterial(
 	groundPhisMat,
 	boxPhisMat,
 	{
-		friction: 0,
+		friction: 0.01,
 	}
 )
 scene.add(box)
@@ -156,9 +156,50 @@ world.addContactMaterial(groBoxContactMat)
 
 
 
+// sphere
+const sphereGeo = new THREE.SphereGeometry(1, 50, 50)
+const sphereMat = new THREE.MeshStandardMaterial({
+	color: 0xa82f2f,
+	roughness: 0.5,
+	metalness: 0,
+	wireframe: true
+})
+const sphere = new THREE.Mesh(sphereGeo, sphereMat)
+scene.add(sphere)
+
+// коллизия sphere
+const spherePhisMat = new CANNON.Material()
+const sphereBody = new CANNON.Body({
+	mass: 10,
+	shape: new CANNON.Sphere(sphere.geometry.parameters.radius),
+	position: new CANNON.Vec3(0, 5, 0),
+	material: spherePhisMat,
+})
+sphereBody.linearDamping = 0.5
+world.addBody(sphereBody)
+
+// взаимодействие ground и sphere
+const sphereGroundContactMaterial = new CANNON.ContactMaterial(
+	groundPhisMat,
+	spherePhisMat,
+	{
+		restitution: 0.5,
+	}
+)
+world.addContactMaterial(sphereGroundContactMaterial)
+
+
+
+
+
+
+
+
 
 
 // СВЕТ
+
+
 
 const dLight = new THREE.DirectionalLight(0xFFFFFF, 3)
 scene.add(dLight)
@@ -183,6 +224,11 @@ dLight.shadow.mapSize.y = 8192
 
 
 
+scene.traverse((child) => {
+	if (child.isMesh && child.name !== `ground`) {
+		child.castShadow = true
+	}
+})
 // счётчик FPS
 let countFPS = 0
 setInterval(() => {
@@ -202,10 +248,12 @@ const animate = () => {
 	// ФИЗИКА
 	ground.position.copy(groundBody.position)
 	ground.quaternion.copy(groundBody.quaternion)
-
 	
 	box.position.copy(boxBody.position)
 	box.quaternion.copy(boxBody.quaternion)
+	
+	sphere.position.copy(sphereBody.position)
+	sphere.quaternion.copy(sphereBody.quaternion)
 
 
 
