@@ -1,7 +1,5 @@
 import * as THREE from "three"
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-// import * as THREE from "https://unpkg.com/three@0.150.1/build/three.module.js";
-// import { OrbitControls } from 'https://unpkg.com/three@0.150.1/examples/jsm/controls/OrbitControls.js'
 import * as CANNON from 'cannon-es'
 
 
@@ -169,6 +167,7 @@ const sphereBody = new CANNON.Body({
 	material: spherePhisMat,
 })
 sphereBody.linearDamping = 0.5
+sphereBody.angularDamping = 0.5
 world.addBody(sphereBody)
 
 // взаимодействие ground и sphere
