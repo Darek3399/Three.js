@@ -40,12 +40,12 @@ orbit.update()
 // скайбокс
 const skyBox = new THREE.CubeTextureLoader()
 scene.background = skyBox.load([
-	'../src/img/sky_boxes/city/skyBox2.jpg',
-	'../src/img/sky_boxes/city/skyBox4.jpg',
-	'../src/img/sky_boxes/city/skyBox1.jpg', //верх
-	'../src/img/sky_boxes/city/skybox0.jpg', //низ
-	'../src/img/sky_boxes/city/skyBox5.jpg',
-	'../src/img/sky_boxes/city/skyBox3.jpg',
+	'../src/img/sky_boxes/City/skyBox2.jpg',
+	'../src/img/sky_boxes/City/skyBox4.jpg',
+	'../src/img/sky_boxes/City/skyBox1.jpg', //верх
+	'../src/img/sky_boxes/City/skybox0.jpg', //низ
+	'../src/img/sky_boxes/City/skyBox5.jpg',
+	'../src/img/sky_boxes/City/skyBox3.jpg',
 ])
 
 
