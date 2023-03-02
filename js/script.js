@@ -28,7 +28,7 @@ const camera = new THREE.PerspectiveCamera(
 	45,
 	window.innerWidth / window.innerHeight,
 	0.1,
-	40000
+	30000
 )
 camera.position.set(0, 25, 20)
 
@@ -43,7 +43,7 @@ scene.background = skyBox.load([
 	'../src/img/sky_boxes/city/skyBox2.jpg',
 	'../src/img/sky_boxes/city/skyBox4.jpg',
 	'../src/img/sky_boxes/city/skyBox1.jpg', //верх
-	'../src/img/sky_boxes/city/skybox0.jpg', //низ
+	'../src/img/sky_boxes/city/skyBox0.jpg', //низ
 	'../src/img/sky_boxes/city/skyBox5.jpg',
 	'../src/img/sky_boxes/city/skyBox3.jpg',
 ])
