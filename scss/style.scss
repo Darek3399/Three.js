@@ -1,0 +1,15 @@
+@import "_nullstyle";
+
+html {
+	position: relative;
+}
+
+#fps {
+	position: absolute;
+	font-size: 25px;
+	font-weight: 900;
+	color: bisque;
+	user-select: none;
+	margin: 50px 0 0 50px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}

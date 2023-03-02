@@ -1,14 +1,8 @@
-import * as THREE from '/node_modules/three'
-import * as CANNON from '/node_modules/cannon-es'
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
-
-// скайбокс
-import sky3Box0 from '../src/img/sky_boxes/city/skybox0.jpg'
-import sky3Box1 from '../src/img/sky_boxes/city/skyBox1.jpg'
-import sky3Box2 from '../src/img/sky_boxes/city/skyBox2.jpg'
-import sky3Box3 from '../src/img/sky_boxes/city/skyBox3.jpg'
-import sky3Box4 from '../src/img/sky_boxes/city/skyBox4.jpg'
-import sky3Box5 from '../src/img/sky_boxes/city/skyBox5.jpg'
+import * as THREE from "three"
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+// import * as THREE from "https://unpkg.com/three@0.150.1/build/three.module.js";
+// import { OrbitControls } from 'https://unpkg.com/three@0.150.1/examples/jsm/controls/OrbitControls.js'
+import * as CANNON from 'cannon-es'
 
 
 
@@ -48,12 +42,12 @@ orbit.update()
 // скайбокс
 const skyBox = new THREE.CubeTextureLoader()
 scene.background = skyBox.load([
-	sky3Box2,
-	sky3Box4,
-	sky3Box1, //верх
-	sky3Box0, //низ
-	sky3Box5,
-	sky3Box3,
+	'../src/img/sky_boxes/city/skyBox2.jpg',
+	'../src/img/sky_boxes/city/skyBox4.jpg',
+	'../src/img/sky_boxes/city/skyBox1.jpg', //верх
+	'../src/img/sky_boxes/city/skybox0.jpg', //низ
+	'../src/img/sky_boxes/city/skyBox5.jpg',
+	'../src/img/sky_boxes/city/skyBox3.jpg',
 ])
 
 
@@ -148,7 +142,6 @@ const groBoxContactMat = new CANNON.ContactMaterial(
 		friction: 0.01,
 	}
 )
-scene.add(box)
 world.addContactMaterial(groBoxContactMat)
 
 
