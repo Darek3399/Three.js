@@ -2,12 +2,21 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import * as CANNON from 'cannon-es'
 
-const skyBox0 = './src/img/sky_boxes/city/skyBox0.jpg'
-const skyBox1 = './src/img/sky_boxes/city/skyBox1.jpg'
-const skyBox2 = './src/img/sky_boxes/city/skyBox2.jpg'
-const skyBox3 = './src/img/sky_boxes/city/skyBox3.jpg'
-const skyBox4 = './src/img/sky_boxes/city/skyBox4.jpg'
-const skyBox5 = './src/img/sky_boxes/city/skyBox5.jpg'
+// const skyBox0 = './src/img/sky_boxes/city/skyBox0.jpg'
+// const skyBox1 = './src/img/sky_boxes/city/skyBox1.jpg'
+// const skyBox2 = './src/img/sky_boxes/city/skyBox2.jpg'
+// const skyBox3 = './src/img/sky_boxes/city/skyBox3.jpg'
+// const skyBox4 = './src/img/sky_boxes/city/skyBox4.jpg'
+// const skyBox5 = './src/img/sky_boxes/city/skyBox5.jpg'
+
+
+const skyBox0 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox0.jpg'
+const skyBox1 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox1.jpg'
+const skyBox2 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox2.jpg'
+const skyBox3 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox3.jpg'
+const skyBox4 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox4.jpg'
+const skyBox5 = 'https://raw.githubusercontent.com/Darek3399/Three.js/master/src/img/sky_boxes/city/skyBox5.jpg'
+
 
 
 
