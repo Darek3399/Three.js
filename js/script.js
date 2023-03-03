@@ -2,12 +2,17 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import * as CANNON from 'cannon-es'
 
-const skyBox0 = 'src/img/sky_boxes/city/skyBox0.jpg'
-const skyBox1 = 'src/img/sky_boxes/city/skyBox1.jpg'
-const skyBox2 = 'src/img/sky_boxes/city/skyBox2.jpg'
-const skyBox3 = 'src/img/sky_boxes/city/skyBox3.jpg'
-const skyBox4 = 'src/img/sky_boxes/city/skyBox4.jpg'
-const skyBox5 = 'src/img/sky_boxes/city/skyBox5.jpg'
+
+// const loader = new THREE.TextureLoader()
+
+// const skyBox0 = '../src/img/sky_boxes/city/skyBox0.jpg'
+// let skyBox0
+// loader.load('src/img/sky_boxes/city/skyBox0.jpg', img => skyBox0 = img)
+// const skyBox1 = 'src/img/sky_boxes/city/skyBox1.jpg'
+// const skyBox2 = 'src/img/sky_boxes/city/skyBox2.jpg'
+// const skyBox3 = 'src/img/sky_boxes/city/skyBox3.jpg'
+// const skyBox4 = 'src/img/sky_boxes/city/skyBox4.jpg'
+// const skyBox5 = 'src/img/sky_boxes/city/skyBox5.jpg'
 
 
 
@@ -40,13 +45,15 @@ orbit.update()
 
 // скайбокс
 const skyBox = new THREE.CubeTextureLoader()
+
+
 scene.background = skyBox.load([
-	skyBox2,
-	skyBox4,
-	skyBox1, //верх
-	skyBox0, //низ
-	skyBox5,
-	skyBox3,
+	'src/img/sky_boxes/city/skyBox2.jpg',
+	'src/img/sky_boxes/city/skyBox4.jpg',
+	'src/img/sky_boxes/city/skyBox1.jpg', //верх
+	'src/img/sky_boxes/city/skyBox0.jpg', //низ
+	'src/img/sky_boxes/city/skyBox5.jpg',
+	'src/img/sky_boxes/city/skyBox3.jpg',
 ])
 
 
