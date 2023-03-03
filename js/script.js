@@ -3,18 +3,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import * as CANNON from 'cannon-es'
 
 
-// const loader = new THREE.TextureLoader()
-
-// const skyBox0 = '../src/img/sky_boxes/city/skyBox0.jpg'
-// let skyBox0
-// loader.load('src/img/sky_boxes/city/skyBox0.jpg', img => skyBox0 = img)
-// const skyBox1 = 'src/img/sky_boxes/city/skyBox1.jpg'
-// const skyBox2 = 'src/img/sky_boxes/city/skyBox2.jpg'
-// const skyBox3 = 'src/img/sky_boxes/city/skyBox3.jpg'
-// const skyBox4 = 'src/img/sky_boxes/city/skyBox4.jpg'
-// const skyBox5 = 'src/img/sky_boxes/city/skyBox5.jpg'
-
-
+const skyBox0 = new URL('../src/img/sky_boxes/city/skyBox0.jpg', import.meta.url)
+const skyBox1 = new URL('../src/img/sky_boxes/city/skyBox1.jpg', import.meta.url)
+const skyBox2 = new URL('../src/img/sky_boxes/city/skyBox2.jpg', import.meta.url)
+const skyBox3 = new URL('../src/img/sky_boxes/city/skyBox3.jpg', import.meta.url)
+const skyBox4 = new URL('../src/img/sky_boxes/city/skyBox4.jpg', import.meta.url)
+const skyBox5 = new URL('../src/img/sky_boxes/city/skyBox5.jpg', import.meta.url)
 
 
 // рендер
@@ -48,12 +42,12 @@ const skyBox = new THREE.CubeTextureLoader()
 
 
 scene.background = skyBox.load([
-	'src/img/sky_boxes/city/skyBox2.jpg',
-	'src/img/sky_boxes/city/skyBox4.jpg',
-	'src/img/sky_boxes/city/skyBox1.jpg', //верх
-	'src/img/sky_boxes/city/skyBox0.jpg', //низ
-	'src/img/sky_boxes/city/skyBox5.jpg',
-	'src/img/sky_boxes/city/skyBox3.jpg',
+	skyBox2,
+	skyBox4,
+	skyBox1, //верх
+	skyBox0, //низ
+	skyBox5,
+	skyBox3,
 ])
 
 
